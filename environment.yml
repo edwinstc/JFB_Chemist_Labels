@@ -1,3 +1,5 @@
+channels:
+  - defaults
 dependencies:
   - bzip2=1.0.8
   - ca-certificates=2022.3.29
