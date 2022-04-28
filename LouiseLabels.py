@@ -36,7 +36,7 @@ def st_display_pdf(pdf_file):
 if not IL_list:
     ''
 else:
-    il_list = pd.read_excel("test.xlsx")
+    il_list = pd.read_excel(IL_list)
     Notebook = il_list["Notebook ID"].to_list()
     IL_page = il_list["IL ID (page number)"].to_list()
     IL_Name = il_list["IL Name"].to_list()
