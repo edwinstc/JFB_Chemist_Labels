@@ -33,7 +33,7 @@ def st_display_pdf(pdf_file):
         base64_pdf = base64.b64encode(f.read()).decode('utf-8')
     pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf"></iframe>' 
     #f'<embed src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf">'
-    st.markdown(pdf_display, unsafe_allow_html=True)
+    st.markdown(pdf_display, unsafe_allow_html=False)
     
 if not IL_list:
     ''
@@ -44,8 +44,8 @@ else:
     IL_Name = il_list["IL Name"].to_list()
     Date = il_list["Date"].to_list()
     Owner = il_list['Owner'].to_list()
-    doc = Make_pdf()
-    pdfname = Print_labels(il_list,doc)
+    raw_doc = Make_pdf()
+    label_pdf = Print_labels(il_list,raw_doc)
 
 # st.download_button(
 #      label="Download labels",
@@ -56,4 +56,4 @@ else:
     
 if st.button('Make labels'):
     st.text(f'{today} IL list is done:')
-    st_display_pdf(pdfname)    
+    st_display_pdf(label_pdf)    
