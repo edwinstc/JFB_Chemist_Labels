@@ -3,4 +3,3 @@ streamlit
 fpdf
 datetime
 openpyxl
-base64
