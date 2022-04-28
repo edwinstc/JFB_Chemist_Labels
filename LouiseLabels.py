@@ -47,7 +47,7 @@ else:
 
 st.download_button(
      label="Download labels",
-     data=doc,
+     data=pdf,
      file_name=pdfname,
     #  mime='pdf',
  )
