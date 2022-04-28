@@ -7,7 +7,7 @@ import base64
 from datetime import date
 
 today = date.today()
-today = today.strftime("%d-%b-%Y")
+global today = today.strftime("%d-%b-%Y")
 st.title('IL Product Label Maker')
 IL_list = st.file_uploader('Drop the IL list here', type=['xlsx','csv'])
    
@@ -47,8 +47,8 @@ else:
 
 st.download_button(
      label="Download labels",
-     data=pdf,
-     file_name=pdfname,
+     data=pdfname,
+     file_name=str(f'Labels_{today}.pdf'),
     #  mime='pdf',
  )
     
