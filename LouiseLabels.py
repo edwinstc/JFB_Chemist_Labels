@@ -7,7 +7,7 @@ import base64
 from datetime import date
 
 today = date.today()
-global today = today.strftime("%d-%b-%Y")
+today = today.strftime("%d-%b-%Y")
 st.title('IL Product Label Maker')
 IL_list = st.file_uploader('Drop the IL list here', type=['xlsx','csv'])
    
