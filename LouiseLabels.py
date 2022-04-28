@@ -6,6 +6,7 @@ import pandas as pd
 import base64
 from datetime import date
 
+
 today = date.today()
 today = today.strftime("%d-%b-%Y")
 st.title('IL Product Label Maker')
@@ -27,11 +28,11 @@ def Print_labels(data,pdf):
     pdf.output(pdfname)
     return pdfname
 
-# def st_display_pdf(pdf_file):  
-#     with open(pdf_file,"rb") as f:
-#         base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-#     pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf">'
-#     st.markdown(pdf_display, unsafe_allow_html=True)
+def st_display_pdf(pdf_file):  
+    with open(pdf_file,"rb") as f:
+        base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+    pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf">'
+    st.markdown(pdf_display, unsafe_allow_html=True)
     
 if not IL_list:
     ''
@@ -45,13 +46,13 @@ else:
     doc = Make_pdf()
     pdfname = Print_labels(il_list,doc)
 
-st.download_button(
-     label="Download labels",
-     data=pdfname,
-     file_name=str(f'Labels_{today}.pdf'),
-    #  mime='pdf',
- )
+# st.download_button(
+#      label="Download labels",
+#      data=pdfname,
+#      file_name=pdfname,
+#     #  mime='pdf',
+#  )
     
-# if st.button('Make labels'):
-#     st.text(f'{today} IL list is done:')
-#     st_display_pdf(pdfname)    
+if st.button('Make labels'):
+    st.text(f'{today} IL list is done:')
+    st_display_pdf(pdfname)    
