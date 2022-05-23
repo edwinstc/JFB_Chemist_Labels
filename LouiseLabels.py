@@ -31,7 +31,7 @@ def Print_labels(data,pdf):
 def st_display_pdf(pdf_file):  
     with open(pdf_file,"rb") as f:
         base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-    pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf"></iframe>'
+    pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf">'
     st.markdown(pdf_display, unsafe_allow_html=True)
     
 if not IL_list:
@@ -43,16 +43,17 @@ else:
     IL_Name = il_list["IL Name"].to_list()
     Date = il_list["Date"].to_list()
     Owner = il_list['Owner'].to_list()
-    raw_doc = Make_pdf()
-    label_pdf = Print_labels(il_list,raw_doc)
+    doc = Make_pdf()
+    pdfname = Print_labels(il_list,doc)
 
-# st.download_button(
+if st.button('Make labels'):
+    st.text(f'{today} IL list is done:')
+    st_display_pdf(pdfname)    
+    
+# st.download_button(  ##Not necessary since you can just download pdf files from embedded display
 #      label="Download labels",
 #      data=pdfname,
 #      file_name=pdfname,
 #     #  mime='pdf',
 #  )
-    
-if st.button('Make labels'):
-    st.text(f'{today} IL list is done:')
-    st_display_pdf(label_pdf)    
+  
